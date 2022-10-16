@@ -32,3 +32,7 @@ for test in ${TEST}/*.in; do
 done
 
 rm -f prog.out prog.err
+
+printf "\nTotal results:\n"
+printf "\e[37;1m%d/%d\e[0m tests with correct answer.\n"   "$ansok" "$tests"
+printf "\e[37;1m%d/%d\e[0m tests with correct error.\n"    "$errok" "$tests"
