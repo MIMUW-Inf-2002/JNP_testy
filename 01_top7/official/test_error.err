@@ -1,0 +1,27 @@
+Error in line 1: # To są w większości błędne dane.
+Error in line 2: NEW -1
+Error in line 3: NEW 0
+Error in line 4: NEW 100000000
+Error in line 5: NEW 1234567890123456789012345678901234567890
+Error in line 6: NEW abc
+Error in line 7: NEW 7x
+Error in line 8: NEW 8 9
+Error in line 9: new 10
+Error in line 10: New 11
+Error in line 11: NEWS 12
+Error in line 14: -1
+Error in line 15: 0
+Error in line 16: 100000000
+Error in line 17: a
+Error in line 18: 1a
+Error in line 19: 9876543210987654321098765432109876543210
+Error in line 22: TOP -1
+Error in line 23: TOP 0
+Error in line 24: TOP 100000000
+Error in line 25: TOP 1234567890123456789012345678901234567890
+Error in line 26: TOP abc
+Error in line 27: TOP 7x
+Error in line 28: TOP 7
+Error in line 29: top
+Error in line 30: Top
+Error in line 31: TOPS
