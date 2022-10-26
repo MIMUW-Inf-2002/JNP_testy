@@ -4,8 +4,9 @@ FILEDIR=${1}
 
 [ -z ${FILEDIR} ] && printf "Nie podałeś folderu z plikami!\n" && exit 1
 
-cp $FILEDIR/hash.cc .
-cp $FILEDIR/hash.h .
+rm -f hash.cc hash.h
+ln $FILEDIR/hash.cc hash.cc
+ln $FILEDIR/hash.h hash.h
 
 rm -rf build
 mkdir build
