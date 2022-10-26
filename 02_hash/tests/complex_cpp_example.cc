@@ -35,6 +35,13 @@ class FooTest : public ::testing::Test {
   // for Foo.
 };
 
+uint64_t hash_function(uint64_t const * v, size_t n) {
+    uint64_t hash = 0;
+    for (size_t k = 0; k < n; ++k)
+      hash ^= v[k];
+    return hash;
+}
+
 // Tests that the Foo::Bar() method does Abc.
 TEST_F(FooTest, MethodBarDoesAbc) {
     auto id = jnp1::hash_create(hash_function);
