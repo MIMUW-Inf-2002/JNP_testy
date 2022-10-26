@@ -1,0 +1,6 @@
+# These files will be copied from the user
+hash.cc
+hash.h
+
+# Cmake build dir
+build/

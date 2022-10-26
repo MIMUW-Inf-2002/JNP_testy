@@ -35,17 +35,20 @@ class FooTest : public ::testing::Test {
   // for Foo.
 };
 
-// Tests that the Foo::Bar() method does Abc.
-TEST_F(FooTest, MethodBarDoesAbc) {
-  // const std::string input_filepath = "this/package/testdata/myinputfile.dat";
-  // const std::string output_filepath = "this/package/testdata/myoutputfile.dat";
-  // Foo f;
-  // EXPECT_EQ(f.Bar(input_filepath, output_filepath), 0);
+uint64_t hash_function(uint64_t const * v, size_t n) {
+    uint64_t hash = 0;
+    for (size_t k = 0; k < n; ++k)
+      hash ^= v[k];
+    return hash;
 }
 
-// Tests that Foo does Xyz.
-TEST_F(FooTest, DoesXyz) {
-  // Exercises the Xyz feature of Foo.
+// Tests that the Foo::Bar() method does Abc.
+TEST_F(FooTest, MethodBarDoesAbc) {
+    auto id = jnp1::hash_create(hash_function);
+    
+    EXPECT_EQ(jnp1::hash_size(id), 0);
+
+    jnp1::hash_delete(id);
 }
 
 }  // namespace example
