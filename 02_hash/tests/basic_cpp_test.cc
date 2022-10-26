@@ -11,9 +11,15 @@ namespace {
 }
 
 TEST(Example, Create) {
+    // You should capture stderr not to trash the test logs
+    testing::internal::CaptureStderr();
+
     auto id = jnp1::hash_create(hash_function);
     
     EXPECT_EQ(jnp1::hash_size(id), 0);
 
     jnp1::hash_delete(id);
+    
+    // You may also get the captured string from stderr and compare it to something
+    std::string output = testing::internal::GetCapturedStderr();
 }

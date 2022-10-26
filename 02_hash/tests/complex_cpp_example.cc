@@ -44,11 +44,15 @@ uint64_t hash_function(uint64_t const * v, size_t n) {
 
 // Tests that the Foo::Bar() method does Abc.
 TEST_F(FooTest, MethodBarDoesAbc) {
+    testing::internal::CaptureStderr();
+
     auto id = jnp1::hash_create(hash_function);
     
     EXPECT_EQ(jnp1::hash_size(id), 0);
 
     jnp1::hash_delete(id);
+    
+    std::string output = testing::internal::GetCapturedStderr();
 }
 
 }  // namespace example
