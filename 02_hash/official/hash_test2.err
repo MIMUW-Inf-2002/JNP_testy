@@ -1,0 +1,17 @@
+hash_create(0x55b04a2d3690)
+hash_create: hash table #0 created
+hash_insert(0, "1 3 5 9", 4)
+hash_insert: hash table #0, sequence "1 3 5 9" inserted
+hash_test(0, "9 5 3 1", 4)
+hash_test: hash table #0, sequence "9 5 3 1" is not present
+hash_insert(0, "9 5 3 1", 4)
+hash_insert: hash table #0, sequence "9 5 3 1" inserted
+hash_test(0, "0 1 3 5 9", 5)
+hash_test: hash table #0, sequence "0 1 3 5 9" is not present
+hash_size(0)
+hash_size: hash table #0 contains 2 element(s)
+hash_delete(0)
+hash_delete: hash table #0 deleted
+hash_test(0, NULL, 0)
+hash_test: invalid pointer (NULL)
+hash_test: invalid size (0)

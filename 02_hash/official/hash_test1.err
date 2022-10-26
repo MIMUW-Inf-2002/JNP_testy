@@ -1,0 +1,91 @@
+hash_create(0x55f2b5d1ac90)
+hash_create: hash table #0 created
+hash_size(0)
+hash_size: hash table #0 contains 0 element(s)
+hash_insert(0, "0 1 3000 150 25", 5)
+hash_insert: hash table #0, sequence "0 1 3000 150 25" inserted
+hash_size(0)
+hash_size: hash table #0 contains 1 element(s)
+hash_insert(0, "25 3000 150 1 0", 5)
+hash_insert: hash table #0, sequence "25 3000 150 1 0" inserted
+hash_size(0)
+hash_size: hash table #0 contains 2 element(s)
+hash_insert(0, "0 1 3000 150 25", 5)
+hash_insert: hash table #0, sequence "0 1 3000 150 25" was present
+hash_size(0)
+hash_size: hash table #0 contains 2 element(s)
+hash_insert(0, NULL, 0)
+hash_insert: invalid pointer (NULL)
+hash_insert: invalid size (0)
+hash_insert(0, NULL, 1)
+hash_insert: invalid pointer (NULL)
+hash_insert(0, "", 0)
+hash_insert: invalid size (0)
+hash_test(0, "25 3000 150 1 0", 5)
+hash_test: hash table #0, sequence "25 3000 150 1 0" is present
+hash_test(0, "18446744073709551615 0 250", 3)
+hash_test: hash table #0, sequence "18446744073709551615 0 250" is not present
+hash_test(0, NULL, 0)
+hash_test: invalid pointer (NULL)
+hash_test: invalid size (0)
+hash_test(0, NULL, 1)
+hash_test: invalid pointer (NULL)
+hash_test(0, "", 0)
+hash_test: invalid size (0)
+hash_test(0, "0 1 3000 150", 4)
+hash_test: hash table #0, sequence "0 1 3000 150" is not present
+hash_remove(0, "0 1 3000 150 25", 5)
+hash_remove: hash table #0, sequence "0 1 3000 150 25" removed
+hash_size(0)
+hash_size: hash table #0 contains 1 element(s)
+hash_insert(0, "18446744073709551615 0 250", 3)
+hash_insert: hash table #0, sequence "18446744073709551615 0 250" inserted
+hash_size(0)
+hash_size: hash table #0 contains 2 element(s)
+hash_remove(0, "0 1 3000 150 25", 5)
+hash_remove: hash table #0, sequence "0 1 3000 150 25" was not present
+hash_remove(0, NULL, 0)
+hash_remove: invalid pointer (NULL)
+hash_remove: invalid size (0)
+hash_remove(0, NULL, 1)
+hash_remove: invalid pointer (NULL)
+hash_remove(0, "", 0)
+hash_remove: invalid size (0)
+hash_create(0x55f2b5d1acc0)
+hash_create: hash table #1 created
+hash_insert(1, "25 3000 150 1 0", 5)
+hash_insert: hash table #1, sequence "25 3000 150 1 0" inserted
+hash_insert(1, "18446744073709551615 0 250", 3)
+hash_insert: hash table #1, sequence "18446744073709551615 0 250" inserted
+hash_clear(0)
+hash_clear: hash table #0 cleared
+hash_size(0)
+hash_size: hash table #0 contains 0 element(s)
+hash_remove(1, "25 3000 150 1 0", 5)
+hash_remove: hash table #1, sequence "25 3000 150 1 0" removed
+hash_size(1)
+hash_size: hash table #1 contains 1 element(s)
+hash_remove(1, "18446744073709551615 0 250", 3)
+hash_remove: hash table #1, sequence "18446744073709551615 0 250" removed
+hash_size(1)
+hash_size: hash table #1 contains 0 element(s)
+hash_clear(1)
+hash_clear: hash table #1 was empty
+hash_size(1)
+hash_size: hash table #1 contains 0 element(s)
+hash_delete(0)
+hash_delete: hash table #0 deleted
+hash_insert(0, "0 1 3000 150 25", 5)
+hash_insert: hash table #0 does not exist
+hash_remove(0, "0 1 3000 150 25", 5)
+hash_remove: hash table #0 does not exist
+hash_test(0, "0 1 3000 150 25", 5)
+hash_test: hash table #0 does not exist
+hash_clear(0)
+hash_clear: hash table #0 does not exist
+hash_size(0)
+hash_size: hash table #0 does not exist
+hash_delete(0)
+hash_delete: hash table #0 does not exist
+hash_delete(1)
+hash_delete: hash table #1 deleted
