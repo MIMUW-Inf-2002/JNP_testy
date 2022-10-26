@@ -18,9 +18,7 @@ enable_testing()
 
 FILE(GLOB InputTestFiles tests/*)
 
-add_library(hash
-    hash.cc
-)
+add_library(hash STATIC hash.cc)
 target_include_directories(hash PRIVATE . )
 
 add_executable(
@@ -31,6 +29,7 @@ target_include_directories(Tests PRIVATE . )
 
 target_link_libraries(
     Tests
+    hash
     GTest::gtest_main
 )
 
