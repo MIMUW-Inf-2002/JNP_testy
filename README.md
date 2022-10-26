@@ -22,6 +22,9 @@ _Testowanie_: Uruchamiamy plik `test.sh` w następujący sposób:
 
 `./test.sh ścieżka/do/folderu/z/rozwiązaniem`
 
+Skrypt usuwa pliki hash.cc i hash.h w swojej lokalizacji!  
+Podmienia je na linki stałe do faktycznych plików w innej lokalizacji. Dzięki temu CMake musi przebudować testy tylko jeśli zmienisz coś w `hash.h`
+
 Skrypt `test.sh` przygotuje plik wykonywalny o nazwie `Tests` i umieści go w katalogu `build`.
 Aby go uruchomić można wykonać:
 
