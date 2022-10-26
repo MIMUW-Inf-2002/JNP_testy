@@ -2,23 +2,34 @@
 
 To repozytorium zawiera studenckie testy do zadań z JNP1 w roku akademickim 2022/2023.
 
-## Instrukcja dodawania testów
+## Przygotowywanie i uruchamianie testów
 
-Obowiązują zasady takie jak na IPP w poprzednim semestrze.
+Format i sposób uruchomienia testów zależy od specyfiki zadania.
 
-Testy do zadania dodajemy w odpowiednim folderze jako podkatalog.
-Konkretny wygląd testów (czy są to funkcje main w cpp, czy może pliki in i out)
-zależy od specyfiki zadania.
+#### 01_top7
 
-## Używanie `git-lfs`
+_Pliki testowe_: Dla każdego testu powinny zostać stworzone trzy pliki: `test.in`, `test.out` oraz `test.err`.
 
-Niektóre testy są bardzo duże i zostały skompresowane do plików `.zip` aby zajmowały mniej miejsca.
-Pliki `.zip` nie są trzymane w głównym repozytorium i zarządza nimi narzędzie `git-lfs`.
+_Testowanie_: Do testowania należy użyć pliku `test.sh` w następujący sposób:
 
-Przykładem takich testów są testy `01_top7/rentib/fat.zip`.
+`./test.sh ścieżka/do/skomilowanego/top7 ścieżkado/folderu/z/testami`
 
-Aby otrzymać dostęp do takich testów należy.
+#### 02_hash
 
-1. Zainstalować pakiet `git-lfs` (np. `sudo apt install git-lfs)
-2. Sklonować repo przy użyciu komendy `git` (normalnie)
-3. Wywołać w repo polecenie `git lfs pull`, która pobierze dodatkowe pliki
+_Pliki testowe_: Testy korzystają z narzędzia `gtest`. Przykłady tworzenia testów zawarte są w katalogu `02_hash/tests`.
+
+_Testowanie_: Uruchamiamy plik `test.sh` w następujący sposób:
+
+`./test.sh ścieżka/do/folderu/z/rozwiązaniem`
+
+Skrypt `test.sh` przygotuje plik wykonywalny o nazwie `Tests` i umieści go w katalogu `build`.
+Aby go uruchomić można wykonać:
+
+```sh
+./build/Tests
+```
+lub
+```sh
+cd build
+./Tests
+```
