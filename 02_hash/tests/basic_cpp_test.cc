@@ -12,6 +12,8 @@ namespace {
 
 TEST(Example, Create) {
     auto id = jnp1::hash_create(hash_function);
+    
+    EXPECT_EQ(jnp1::hash_size(id), 0);
 
     jnp1::hash_delete(id);
 }
