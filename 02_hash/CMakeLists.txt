@@ -19,13 +19,12 @@ enable_testing()
 FILE(GLOB InputTestFiles tests/*)
 
 add_library(hash STATIC hash.cc)
-target_include_directories(hash PRIVATE . )
+target_include_directories(hash PUBLIC . )
 
 add_executable(
     Tests
     ${InputTestFiles}
 )
-target_include_directories(Tests PRIVATE . )
 
 target_link_libraries(
     Tests
