@@ -4,11 +4,14 @@ FILEDIR=${1}
 
 [ -z ${FILEDIR} ] && printf "Nie podałeś folderu z plikami!\n" && exit 1
 
-cp $FILEDIR/hash.cc .
-cp $FILEDIR/hash.h .
+rm -f hash.cc hash.h
+# Jeżeli tworzenie linków nie działa to należy podmienić poniższe linijki
+ln $FILEDIR/hash.cc hash.cc || exit 1
+ln $FILEDIR/hash.h hash.h || exit 1
 
-rm -rf build
-mkdir build
+[ ! -d "build" ] && mkdir build
+
 cd build
 cmake ..
+
 cmake --build .
