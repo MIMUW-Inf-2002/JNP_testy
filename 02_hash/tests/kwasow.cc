@@ -184,17 +184,9 @@ TEST(Kwasow, Logging) {
     auto array1 = new uint64_t[size]{1, 2, 3};
     auto array2 = new uint64_t[size]{1, 1, 1};
 
-    const hash_function_t &hash_function = hash_function_good;
-
     testing::internal::CaptureStderr();
-    auto id = jnp1::hash_create(hash_function);
-    std::stringstream ss;
-    ss << "hash_create(" << hash_function << ")\nhash_create: hash table #" << id << " created\n";
-    correct = ss.str();
+    auto id = jnp1::hash_create(hash_function_good);
     output = testing::internal::GetCapturedStderr();
-    // Checking this is to compilated, maybe later
-    // std::cout << output << std::endl;
-    // ASSERT_STREQ(output.c_str(), correct.c_str());
     
     // Add something
     testing::internal::CaptureStderr();
