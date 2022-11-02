@@ -370,19 +370,19 @@ TEST(Kwasow, Incorrect) {
     // NULL arrays and incorrect ids
     testing::internal::CaptureStderr();
     jnp1::hash_insert(wrongId, nullptr, size);
-    correct = "hash_insert(" + std::to_string(wrongId) + ", NULL, 3)\nhash_insert: hash table #" + std::to_string(wrongId) + " does not exist\nhash_insert: invalid pointer (NULL)\n";
+    correct = "hash_insert(" + std::to_string(wrongId) + ", NULL, 3)\nhash_insert: invalid pointer (NULL)\n";
     output = testing::internal::GetCapturedStderr();
     ASSERT_STREQ(output.c_str(), correct.c_str());
 
     testing::internal::CaptureStderr();
     jnp1::hash_remove(wrongId, nullptr, size);
-    correct = "hash_remove(" + std::to_string(wrongId) + ", NULL, 3)\nhash_remove: hash table #" + std::to_string(wrongId) + " does not exist\nhash_remove: invalid pointer (NULL)\n";
+    correct = "hash_remove(" + std::to_string(wrongId) + ", NULL, 3)\nhash_remove: invalid pointer (NULL)\n";
     output = testing::internal::GetCapturedStderr();
     ASSERT_STREQ(output.c_str(), correct.c_str());
 
     testing::internal::CaptureStderr();
     jnp1::hash_test(wrongId, nullptr, size);
-    correct = "hash_test(" + std::to_string(wrongId) + ", NULL, 3)\nhash_test: hash table #" + std::to_string(wrongId) + " does not exist\nhash_test: invalid pointer (NULL)\n";
+    correct = "hash_test(" + std::to_string(wrongId) + ", NULL, 3)\nhash_test: invalid pointer (NULL)\n";
     output = testing::internal::GetCapturedStderr();
     ASSERT_STREQ(output.c_str(), correct.c_str());
 
@@ -427,19 +427,19 @@ TEST(Kwasow, Incorrect) {
     // Incorrect id, NULL array, incorrect size (0)
     testing::internal::CaptureStderr();
     jnp1::hash_insert(wrongId, nullptr, 0);
-    correct = "hash_insert(" + std::to_string(wrongId) + ", NULL, 0)\nhash_insert: hash table #" + std::to_string(wrongId) + " does not exist\nhash_insert: invalid pointer (NULL)\nhash_insert: invalid size (0)\n";
+    correct = "hash_insert(" + std::to_string(wrongId) + ", NULL, 0)\nhash_insert: invalid pointer (NULL)\nhash_insert: invalid size (0)\n";
     output = testing::internal::GetCapturedStderr();
     ASSERT_STREQ(output.c_str(), correct.c_str());
 
     testing::internal::CaptureStderr();
     jnp1::hash_remove(wrongId, nullptr, 0);
-    correct = "hash_remove(" + std::to_string(wrongId) + ", NULL, 0)\nhash_remove: hash table #" + std::to_string(wrongId) + " does not exist\nhash_remove: invalid pointer (NULL)\nhash_remove: invalid size (0)\n";
+    correct = "hash_remove(" + std::to_string(wrongId) + ", NULL, 0)\nhash_remove: invalid pointer (NULL)\nhash_remove: invalid size (0)\n";
     output = testing::internal::GetCapturedStderr();
     ASSERT_STREQ(output.c_str(), correct.c_str());
 
     testing::internal::CaptureStderr();
     jnp1::hash_test(wrongId, nullptr, 0);
-    correct = "hash_test(" + std::to_string(wrongId) + ", NULL, 0)\nhash_test: hash table #" + std::to_string(wrongId) + " does not exist\nhash_test: invalid pointer (NULL)\nhash_test: invalid size (0)\n";
+    correct = "hash_test(" + std::to_string(wrongId) + ", NULL, 0)\nhash_test: invalid pointer (NULL)\nhash_test: invalid size (0)\n";
     output = testing::internal::GetCapturedStderr();
     ASSERT_STREQ(output.c_str(), correct.c_str());
 }
