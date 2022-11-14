@@ -37,7 +37,7 @@ cd build
 ./Tests
 ```
 
-#### 02_hash
+#### 03_moneybag
 
 Tak samo jak `02_hash`.
 
