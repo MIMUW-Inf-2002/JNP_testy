@@ -36,3 +36,8 @@ lub
 cd build
 ./Tests
 ```
+
+#### 02_hash
+
+Tak samo jak `02_hash`.
+
