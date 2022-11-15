@@ -63,6 +63,12 @@ TEST(Rentib, comparision) {
   Moneybag a(1, 2, 3);
   Moneybag b(3, 2, 1);
 
+  ASSERT_TRUE((bool)Moneybag(1, 2, 3));
+  ASSERT_TRUE((bool)Moneybag(~0, 0, 0));
+  ASSERT_TRUE((bool)Moneybag(~0, 0, 1));
+  ASSERT_TRUE((bool)Moneybag(~0, ~0, 1));
+  ASSERT_FALSE((bool)Moneybag(0, 0, 0));
+
   ASSERT_FALSE(a < b);
   ASSERT_FALSE(a > b);
   ASSERT_FALSE(a >= b);
