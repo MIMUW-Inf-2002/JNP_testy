@@ -1,4 +1,6 @@
+#include <functional>
 #include <sstream>
+#include <vector>
 
 #include "moneybag.h"
 #include "gtest/gtest.h"
@@ -17,21 +19,21 @@ TEST(Rentib, binary_operators) {
   a = Moneybag(1, 1, 1);
   b = Moneybag(2, 2, 2);
 
-  {
-    bool exceptionThrown = false;
-    try {
-      a = a - b;
-    } catch (...) {
-      exceptionThrown = true;
-    }
-    ASSERT_TRUE(exceptionThrown);
-    ASSERT_TRUE(a == Moneybag(1, 1, 1));
-  }
+  auto e1 = [&]() { a = a - b; };
+  auto e2 = [&]() { a -= b; };
+  auto e3 = [&]() { a += Moneybag(~0, ~0, ~0); };
+  auto e4 = [&]() { a += Moneybag(~0, 0, 0); };
+  auto e5 = [&]() { a += Moneybag(0, ~0, 0); };
+  auto e6 = [&]() { a += Moneybag(0, 0, ~0); };
+  auto e7 = [&]() { a = ((a * 2) * ~0); };
+  auto e8 = [&]() { a = (a * ~0) + b; };
 
-  {
+  vector<function<void()>> exc({e1, e2, e3, e4, e5, e6, e7, e8});
+
+  for (auto e : exc) {
     bool exceptionThrown = false;
     try {
-      a -= b;
+      e();
     } catch (...) {
       exceptionThrown = true;
     }
@@ -45,6 +47,7 @@ TEST(Rentib, binary_operators) {
   ASSERT_EQ(a, b);
   ASSERT_EQ(a * 213, 213 * a);
   ASSERT_EQ(a * 213, 213 * b);
+  ASSERT_EQ(a * ~0, ~0 * b);
 
   volatile int x = 2;
   ASSERT_EQ(a * (bool)x, a);
@@ -63,6 +66,12 @@ TEST(Rentib, comparision) {
   Moneybag a(1, 2, 3);
   Moneybag b(3, 2, 1);
 
+  ASSERT_TRUE((bool)Moneybag(1, 2, 3));
+  ASSERT_TRUE((bool)Moneybag(~0, 0, 0));
+  ASSERT_TRUE((bool)Moneybag(~0, 0, 1));
+  ASSERT_TRUE((bool)Moneybag(~0, ~0, 1));
+  ASSERT_FALSE((bool)Moneybag(0, 0, 0));
+
   ASSERT_FALSE(a < b);
   ASSERT_FALSE(a > b);
   ASSERT_FALSE(a >= b);
@@ -80,6 +89,11 @@ TEST(Rentib, comparision) {
   ASSERT_TRUE(a < b);
   ASSERT_TRUE(a <= b);
   ASSERT_TRUE(a != b);
+  b = a;
+  b *= 2;
+  assert(a < b);
+  assert(a <= b);
+  assert(!(a == b));
 
   Value v = Value(a);
   Value u(b);
@@ -93,6 +107,13 @@ TEST(Rentib, comparision) {
   ASSERT_TRUE(v < (1 << 8));
   ASSERT_TRUE(v > (1 << 8) - 2);
   ASSERT_TRUE(v == ~(~0 << 8));
+
+  v = Value(Moneybag(~0, 0, 0));
+  u = Value(Moneybag(0, ~0, 0));
+
+  ASSERT_TRUE(v > u);
+  ASSERT_TRUE(v >= u);
+  ASSERT_TRUE(v != u);
 }
 
 TEST(Rentib, constructor) {
@@ -140,4 +161,5 @@ TEST(Rentib, strings) {
   ASSERT_EQ(string(Value((uint16_t)~0)), "65535");
   ASSERT_EQ(string(Value((uint32_t)~0)), "4294967295");
   ASSERT_EQ(string(Value((uint64_t)~0)), "18446744073709551615");
+  ASSERT_EQ(string(Value(Moneybag(~0, ~0, ~0))), "4667026250648516558595");
 }
