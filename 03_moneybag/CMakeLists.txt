@@ -18,10 +18,12 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 FILE(GLOB InputTestFiles tests/*)
+FILE(GLOB UserImplementationFiles *.cc)
 
 add_executable(
     Tests
     ${InputTestFiles}
+    ${UserImplementationFiles}
 )
 
 target_include_directories(Tests PUBLIC .)
