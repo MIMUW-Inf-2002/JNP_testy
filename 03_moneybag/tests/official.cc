@@ -8,7 +8,10 @@
 using namespace std;
 
 TEST(Peczar, official) {
-  // Taka konstrukcja nie powinna się kompilować.
+  // You should capture stderr not to trash the test logs
+  testing::internal::CaptureStdout();
+	
+	// Taka konstrukcja nie powinna się kompilować.
   // Moneybag m0;
 
   Moneybag m1 = Moneybag(1, 10, 19);
@@ -63,4 +66,7 @@ TEST(Peczar, official) {
   // Denier = Solidus;
   // Solidus = Livre;
   // int k = Moneybag(1, 2, 3);
+	
+	// You may also get the captured string from stderr and compare it to something
+  std::string output = testing::internal::GetCapturedStdout();
 }
