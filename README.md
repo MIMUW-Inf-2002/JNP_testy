@@ -6,13 +6,9 @@ To repozytorium zawiera studenckie testy do zadań z JNP1 w roku akademickim 202
 
 Format i sposób uruchomienia testów zależy od specyfiki zadania.
 
-#### 01_top7
+#### 03_moneybag
 
-_Pliki testowe_: Dla każdego testu powinny zostać stworzone trzy pliki: `test.in`, `test.out` oraz `test.err`.
-
-_Testowanie_: Do testowania należy użyć pliku `test.sh` w następujący sposób:
-
-`./test.sh ścieżka/do/skomilowanego/top7 ścieżkado/folderu/z/testami`
+Tak samo jak `02_hash`.
 
 #### 02_hash
 
@@ -37,7 +33,10 @@ cd build
 ./Tests
 ```
 
-#### 03_moneybag
+#### 01_top7
 
-Tak samo jak `02_hash`.
+_Pliki testowe_: Dla każdego testu powinny zostać stworzone trzy pliki: `test.in`, `test.out` oraz `test.err`.
 
+_Testowanie_: Do testowania należy użyć pliku `test.sh` w następujący sposób:
+
+`./test.sh ścieżka/do/skomilowanego/top7 ścieżkado/folderu/z/testami`
