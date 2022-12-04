@@ -4,10 +4,12 @@
 
 using namespace std;
 using species_id_t = uint8_t;
+const species_id_t id_1 = 1;
+const species_id_t id_2 = 2;
 
 constexpr void plant_eaten_by_herb_1() {
-    constexpr Herbivore<species_id_t> stegozaur(1, 50);
-    constexpr Plant<species_id_t> oak(1, 100);
+    constexpr Herbivore<species_id_t> stegozaur(id_1, 50);
+    constexpr Plant<species_id_t> oak(id_1, 100);
 
 
     constexpr auto encounter_result = encounter(stegozaur, oak);
@@ -21,8 +23,8 @@ constexpr void plant_eaten_by_herb_1() {
 }
 
 constexpr void plant_eaten_by_herb_2() {
-    constexpr Herbivore<species_id_t> stegozaur(1, 50);
-    constexpr Plant<species_id_t> oak(1, 100);
+    constexpr Herbivore<species_id_t> stegozaur(id_1, 50);
+    constexpr Plant<species_id_t> oak(id_1, 100);
 
 
     constexpr auto encounter_result = encounter(oak, stegozaur);
@@ -36,8 +38,8 @@ constexpr void plant_eaten_by_herb_2() {
 }
 
 constexpr void plant_eaten_by_omn_1() {
-    constexpr Omnivore<species_id_t> terizinozaur(1, 50);
-    constexpr Plant<species_id_t> oak(1, 100);
+    constexpr Omnivore<species_id_t> terizinozaur(id_1, 50);
+    constexpr Plant<species_id_t> oak(id_1, 100);
 
     constexpr auto encounter_result = encounter(terizinozaur, oak);
     constexpr Omnivore<species_id_t> o1 = get<0>(encounter_result);
@@ -50,8 +52,8 @@ constexpr void plant_eaten_by_omn_1() {
 }
 
 constexpr void plant_eaten_by_omn_2() {
-    constexpr Omnivore<species_id_t> terizinozaur(1, 50);
-    constexpr Plant<species_id_t> oak(1, 100);
+    constexpr Omnivore<species_id_t> terizinozaur(id_1, 50);
+    constexpr Plant<species_id_t> oak(id_1, 100);
 
 
     constexpr auto encounter_result = encounter(oak, terizinozaur);
@@ -65,8 +67,8 @@ constexpr void plant_eaten_by_omn_2() {
 }
 
 constexpr void two_herb_nothing() {
-    constexpr Herbivore<species_id_t> stegozaur(2, 50);
-    constexpr Herbivore<species_id_t> elephant(1, 100);
+    constexpr Herbivore<species_id_t> stegozaur(id_2, 50);
+    constexpr Herbivore<species_id_t> elephant(id_1, 100);
 
     constexpr auto encounter_result = encounter(stegozaur, elephant);
     constexpr Herbivore<species_id_t> o1 = get<0>(encounter_result);
@@ -79,8 +81,8 @@ constexpr void two_herb_nothing() {
 }
 
 constexpr void two_herb_multiply() {
-    constexpr Herbivore<species_id_t> stegozaur(2, 50);
-    constexpr Herbivore<species_id_t> stegozaur2(2, 100);
+    constexpr Herbivore<species_id_t> stegozaur(id_2, 50);
+    constexpr Herbivore<species_id_t> stegozaur2(id_2, 100);
 
     constexpr auto encounter_result = encounter(stegozaur, stegozaur2);
     constexpr Herbivore<species_id_t> o1 = get<0>(encounter_result);
@@ -93,8 +95,8 @@ constexpr void two_herb_multiply() {
 }
 
 constexpr void herb_eaten_by_omn_1() {
-    constexpr Herbivore<species_id_t> stegozaur(1, 50);
-    constexpr Omnivore<species_id_t> terizinozaur(1, 100);
+    constexpr Herbivore<species_id_t> stegozaur(id_1, 50);
+    constexpr Omnivore<species_id_t> terizinozaur(id_1, 100);
 
     constexpr auto encounter_result = encounter(stegozaur, terizinozaur);
     constexpr Herbivore<species_id_t> o1 = get<0>(encounter_result);
@@ -107,8 +109,8 @@ constexpr void herb_eaten_by_omn_1() {
 }
 
 constexpr void herb_eaten_by_omn_2() {
-    constexpr Herbivore<species_id_t> stegozaur(1, 50);
-    constexpr Omnivore<species_id_t> terizinozaur(1, 100);
+    constexpr Herbivore<species_id_t> stegozaur(id_1, 50);
+    constexpr Omnivore<species_id_t> terizinozaur(id_1, 100);
 
     constexpr auto encounter_result = encounter(terizinozaur, stegozaur);
     constexpr Omnivore<species_id_t> o1 = get<0>(encounter_result);
@@ -121,8 +123,8 @@ constexpr void herb_eaten_by_omn_2() {
 }
 
 constexpr void herb_not_eaten_by_omn_1() {
-    constexpr Herbivore<species_id_t> stegozaur(1, 100);
-    constexpr Omnivore<species_id_t> terizinozaur(1, 100);
+    constexpr Herbivore<species_id_t> stegozaur(id_1, 100);
+    constexpr Omnivore<species_id_t> terizinozaur(id_1, 100);
 
     constexpr auto encounter_result = encounter(terizinozaur, stegozaur);
     constexpr Omnivore<species_id_t> o1 = get<0>(encounter_result);
@@ -135,8 +137,8 @@ constexpr void herb_not_eaten_by_omn_1() {
 }
 
 constexpr void herb_not_eaten_by_omn_2() {
-    constexpr Herbivore<species_id_t> stegozaur(1, 100);
-    constexpr Omnivore<species_id_t> terizinozaur(1, 100);
+    constexpr Herbivore<species_id_t> stegozaur(id_1, 100);
+    constexpr Omnivore<species_id_t> terizinozaur(id_1, 100);
 
     constexpr auto encounter_result = encounter(stegozaur, terizinozaur);
     constexpr Herbivore<species_id_t> o1 = get<0>(encounter_result);
@@ -149,8 +151,8 @@ constexpr void herb_not_eaten_by_omn_2() {
 }
 
 constexpr void carn_plant_nothing_1() {
-    constexpr Carnivore<species_id_t> tyranozaur(1, 100);
-    constexpr Plant<species_id_t> oak(1, 100);
+    constexpr Carnivore<species_id_t> tyranozaur(id_1, 100);
+    constexpr Plant<species_id_t> oak(id_1, 100);
 
     constexpr auto encounter_result = encounter(tyranozaur, oak);
     constexpr Carnivore<species_id_t> o1 = get<0>(encounter_result);
@@ -163,8 +165,8 @@ constexpr void carn_plant_nothing_1() {
 }
 
 constexpr void carn_plant_nothing_2() {
-    constexpr Carnivore<species_id_t> tyranozaur(1, 100);
-    constexpr Plant<species_id_t> oak(1, 100);
+    constexpr Carnivore<species_id_t> tyranozaur(id_1, 100);
+    constexpr Plant<species_id_t> oak(id_1, 100);
 
     constexpr auto encounter_result = encounter(oak, tyranozaur);
     constexpr Plant<species_id_t> o1 = get<0>(encounter_result);
@@ -177,8 +179,8 @@ constexpr void carn_plant_nothing_2() {
 }
 
 constexpr void herb_eaten_by_carn_1() {
-    constexpr Herbivore<species_id_t> stegozaur(1, 50);
-    constexpr Carnivore<species_id_t> tyranozaur(1, 100);
+    constexpr Herbivore<species_id_t> stegozaur(id_1, 50);
+    constexpr Carnivore<species_id_t> tyranozaur(id_1, 100);
 
     constexpr auto encounter_result = encounter(stegozaur, tyranozaur);
     constexpr Herbivore<species_id_t> o1 = get<0>(encounter_result);
@@ -191,8 +193,8 @@ constexpr void herb_eaten_by_carn_1() {
 }
 
 constexpr void herb_eaten_by_carn_2() {
-    constexpr Herbivore<species_id_t> stegozaur(1, 50);
-    constexpr Carnivore<species_id_t> tyranozaur(1, 100);
+    constexpr Herbivore<species_id_t> stegozaur(id_1, 50);
+    constexpr Carnivore<species_id_t> tyranozaur(id_1, 100);
 
     constexpr auto encounter_result = encounter(tyranozaur, stegozaur);
     constexpr Carnivore<species_id_t> o1 = get<0>(encounter_result);
@@ -205,8 +207,8 @@ constexpr void herb_eaten_by_carn_2() {
 }
 
 constexpr void herb_not_eaten_by_carn_1() {
-    constexpr Herbivore<species_id_t> stegozaur(1, 100);
-    constexpr Carnivore<species_id_t> tyranozaur(1, 100);
+    constexpr Herbivore<species_id_t> stegozaur(id_1, 100);
+    constexpr Carnivore<species_id_t> tyranozaur(id_1, 100);
 
     constexpr auto encounter_result = encounter(tyranozaur, stegozaur);
     constexpr Carnivore<species_id_t> o1 = get<0>(encounter_result);
@@ -219,8 +221,8 @@ constexpr void herb_not_eaten_by_carn_1() {
 }
 
 constexpr void herb_not_eaten_by_carn_2() {
-    constexpr Herbivore<species_id_t> stegozaur(1, 100);
-    constexpr Carnivore<species_id_t> tyranozaur(1, 100);
+    constexpr Herbivore<species_id_t> stegozaur(id_1, 100);
+    constexpr Carnivore<species_id_t> tyranozaur(id_1, 100);
 
     constexpr auto encounter_result = encounter(stegozaur, tyranozaur);
     constexpr Herbivore<species_id_t> o1 = get<0>(encounter_result);
@@ -233,8 +235,8 @@ constexpr void herb_not_eaten_by_carn_2() {
 }
 
 constexpr void omn_carn_fight_1() {
-    constexpr Omnivore<species_id_t> human(1, 200);
-    constexpr Carnivore<species_id_t> tyranozaur(1, 100);
+    constexpr Omnivore<species_id_t> human(id_1, 200);
+    constexpr Carnivore<species_id_t> tyranozaur(id_1, 100);
 
     constexpr auto encounter_result = encounter(human, tyranozaur);
     constexpr Omnivore<species_id_t> o1 = get<0>(encounter_result);
@@ -247,8 +249,8 @@ constexpr void omn_carn_fight_1() {
 }
 
 constexpr void omn_carn_fight_2() {
-    constexpr Omnivore<species_id_t> human(1, 200);
-    constexpr Carnivore<species_id_t> tyranozaur(1, 100);
+    constexpr Omnivore<species_id_t> human(id_1, 200);
+    constexpr Carnivore<species_id_t> tyranozaur(id_1, 100);
 
     constexpr auto encounter_result = encounter(tyranozaur, human);
     constexpr Carnivore<species_id_t> o1 = get<0>(encounter_result);
@@ -261,8 +263,8 @@ constexpr void omn_carn_fight_2() {
 }
 
 constexpr void omn_carn_fight_3() {
-    constexpr Omnivore<species_id_t> human(1, 100);
-    constexpr Carnivore<species_id_t> tyranozaur(1, 100);
+    constexpr Omnivore<species_id_t> human(id_1, 100);
+    constexpr Carnivore<species_id_t> tyranozaur(id_1, 100);
 
     constexpr auto encounter_result = encounter(human, tyranozaur);
     constexpr Omnivore<species_id_t> o1 = get<0>(encounter_result);
@@ -275,8 +277,8 @@ constexpr void omn_carn_fight_3() {
 }
 
 constexpr void omn_carn_fight_4() {
-    constexpr Omnivore<species_id_t> human(1, 100);
-    constexpr Carnivore<species_id_t> tyranozaur(1, 100);
+    constexpr Omnivore<species_id_t> human(id_1, 100);
+    constexpr Carnivore<species_id_t> tyranozaur(id_1, 100);
 
     constexpr auto encounter_result = encounter(tyranozaur, human);
     constexpr Carnivore<species_id_t> o1 = get<0>(encounter_result);
@@ -289,8 +291,8 @@ constexpr void omn_carn_fight_4() {
 }
 
 constexpr void omn_carn_fight_5() {
-    constexpr Omnivore<species_id_t> human(1, 100);
-    constexpr Carnivore<species_id_t> tyranozaur(1, 200);
+    constexpr Omnivore<species_id_t> human(id_1, 100);
+    constexpr Carnivore<species_id_t> tyranozaur(id_1, 200);
 
     constexpr auto encounter_result = encounter(human, tyranozaur);
     constexpr Omnivore<species_id_t> o1 = get<0>(encounter_result);
@@ -303,8 +305,8 @@ constexpr void omn_carn_fight_5() {
 }
 
 constexpr void omn_carn_fight_6() {
-    constexpr Omnivore<species_id_t> human(1, 100);
-    constexpr Carnivore<species_id_t> tyranozaur(1, 200);
+    constexpr Omnivore<species_id_t> human(id_1, 100);
+    constexpr Carnivore<species_id_t> tyranozaur(id_1, 200);
 
     constexpr auto encounter_result = encounter(tyranozaur, human);
     constexpr Carnivore<species_id_t> o1 = get<0>(encounter_result);
@@ -317,8 +319,8 @@ constexpr void omn_carn_fight_6() {
 }
 
 constexpr void omn_omn_fight_1() {
-    constexpr Omnivore<species_id_t> human(1, 100);
-    constexpr Omnivore<species_id_t> bear(2, 200);
+    constexpr Omnivore<species_id_t> human(id_1, 100);
+    constexpr Omnivore<species_id_t> bear(id_2, 200);
 
     constexpr auto encounter_result = encounter(human, bear);
     constexpr Omnivore<species_id_t> o1 = get<0>(encounter_result);
@@ -331,8 +333,8 @@ constexpr void omn_omn_fight_1() {
 }
 
 constexpr void omn_omn_fight_2() {
-    constexpr Omnivore<species_id_t> human(1, 200);
-    constexpr Omnivore<species_id_t> bear(2, 100);
+    constexpr Omnivore<species_id_t> human(id_1, 200);
+    constexpr Omnivore<species_id_t> bear(id_2, 100);
 
     constexpr auto encounter_result = encounter(human, bear);
     constexpr Omnivore<species_id_t> o1 = get<0>(encounter_result);
@@ -345,8 +347,8 @@ constexpr void omn_omn_fight_2() {
 }
 
 constexpr void omn_omn_fight_3() {
-    constexpr Omnivore<species_id_t> human(1, 100);
-    constexpr Omnivore<species_id_t> bear(2, 100);
+    constexpr Omnivore<species_id_t> human(id_1, 100);
+    constexpr Omnivore<species_id_t> bear(id_2, 100);
 
     constexpr auto encounter_result = encounter(human, bear);
     constexpr Omnivore<species_id_t> o1 = get<0>(encounter_result);
@@ -359,8 +361,8 @@ constexpr void omn_omn_fight_3() {
 }
 
 constexpr void omn_omn_multiply_1() {
-    constexpr Omnivore<species_id_t> human1(1, 100);
-    constexpr Omnivore<species_id_t> human2(1, 200);
+    constexpr Omnivore<species_id_t> human1(id_1, 100);
+    constexpr Omnivore<species_id_t> human2(id_1, 200);
 
     constexpr auto encounter_result = encounter(human1, human2);
     constexpr Omnivore<species_id_t> o1 = get<0>(encounter_result);
@@ -373,8 +375,8 @@ constexpr void omn_omn_multiply_1() {
 }
 
 constexpr void carn_carn_fight_1() {
-    constexpr Carnivore<species_id_t> lion(1, 200);
-    constexpr Carnivore<species_id_t> tyranozaur(2, 100);
+    constexpr Carnivore<species_id_t> lion(id_1, 200);
+    constexpr Carnivore<species_id_t> tyranozaur(id_2, 100);
 
     constexpr auto encounter_result = encounter(lion, tyranozaur);
     constexpr Carnivore<species_id_t> o1 = get<0>(encounter_result);
@@ -387,8 +389,8 @@ constexpr void carn_carn_fight_1() {
 }
 
 constexpr void carn_carn_fight_2() {
-    constexpr Carnivore<species_id_t> lion(1, 100);
-    constexpr Carnivore<species_id_t> tyranozaur(2, 100);
+    constexpr Carnivore<species_id_t> lion(id_1, 100);
+    constexpr Carnivore<species_id_t> tyranozaur(id_2, 100);
 
     constexpr auto encounter_result = encounter(lion, tyranozaur);
     constexpr Carnivore<species_id_t> o1 = get<0>(encounter_result);
@@ -401,8 +403,8 @@ constexpr void carn_carn_fight_2() {
 }
 
 constexpr void carn_carn_fight_3() {
-    constexpr Carnivore<species_id_t> lion(1, 100);
-    constexpr Carnivore<species_id_t> tyranozaur(2, 200);
+    constexpr Carnivore<species_id_t> lion(id_1, 100);
+    constexpr Carnivore<species_id_t> tyranozaur(id_2, 200);
 
     constexpr auto encounter_result = encounter(lion, tyranozaur);
     constexpr Carnivore<species_id_t> o1 = get<0>(encounter_result);
@@ -415,8 +417,8 @@ constexpr void carn_carn_fight_3() {
 }
 
 constexpr void carn_carn_multiply_1() {
-    constexpr Carnivore<species_id_t> lion1(1, 100);
-    constexpr Carnivore<species_id_t> lion2(1, 200);
+    constexpr Carnivore<species_id_t> lion1(id_1, 100);
+    constexpr Carnivore<species_id_t> lion2(id_1, 200);
 
     constexpr auto encounter_result = encounter(lion1, lion2);
     constexpr Carnivore<species_id_t> o1 = get<0>(encounter_result);
@@ -429,22 +431,22 @@ constexpr void carn_carn_multiply_1() {
 }
 
 constexpr void should_fail(){
-    constexpr Omnivore<uint64_t> dog1(1, 10);
-    constexpr Omnivore<double> dog2(1, 15);
+    constexpr Omnivore<uint64_t> dog1(id_1, 10);
+    constexpr Omnivore<double> dog2(id_1, 15);
 
 //    encounter(dog1, dog2);
-    constexpr Plant<uint64_t> plant1(1, 10);
-    constexpr Plant<uint64_t> plant2(1, 15);
+    constexpr Plant<uint64_t> plant1(id_1, 10);
+    constexpr Plant<uint64_t> plant2(id_1, 15);
 //    encounter(plant1, plant2);
 }
 
 constexpr void series(){
-    constexpr Omnivore<species_id_t> caveman(1, 200);
-    constexpr Carnivore<species_id_t> lion1(1, 100);
-    constexpr Carnivore<species_id_t> lion2(1, 100);
-    constexpr Carnivore<species_id_t> lion3(1, 100);
-    constexpr Omnivore<species_id_t> caveman2(2, 300);
-    constexpr Herbivore<species_id_t> mammoth(1, 1000);
+    constexpr Omnivore<species_id_t> caveman(id_1, 200);
+    constexpr Carnivore<species_id_t> lion1(id_1, 100);
+    constexpr Carnivore<species_id_t> lion2(id_1, 100);
+    constexpr Carnivore<species_id_t> lion3(id_1, 100);
+    constexpr Omnivore<species_id_t> caveman2(id_2, 300);
+    constexpr Herbivore<species_id_t> mammoth(id_1, 1000);
 
     constexpr auto caveman_result = encounter_series(caveman, lion1, lion2, lion3, caveman2, mammoth);
 
