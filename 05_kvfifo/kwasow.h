@@ -12,6 +12,7 @@ void kwasowTests1();
 void kwasowTests2();
 void kwasowTests3();
 void kwasowTests4();
+void kwasowTests5();
 
 void kwasowMain() {
   std::cout << "Starting kwasow tests" << std::endl;
@@ -25,6 +26,7 @@ void kwasowMain() {
   std::cout << "Passed kwasowTests3" << std::endl;
   kwasowTests4();
   std::cout << "Passed kwasowTests4" << std::endl;
+	kwasowTests5();
 }
 
 // Basic operations
@@ -572,6 +574,39 @@ void kwasowTests4() {
     i--;
   } while (walk != kvf1.k_begin());
   assert(i == 0);
+}
+
+// Test move constructor
+void kwasowTests5() {
+  kvfifo<int, int> kvf1;
+  kvf1.push(1, 1);
+  kvf1.push(2, 1);
+  kvf1.push(3, 1);
+  kvf1.push(4, 1);
+
+  kvfifo<int, int> kvf2(std::move(kvf1));
+  assert(!kvf2.empty());
+  assert(kvf2.size() == 4);
+  assert(kvf2.front().first == 1 && kvf2.front().second == 1);
+  assert(kvf2.first(2).first == 2 && kvf2.first(2).second == 1);
+  assert(kvf2.last(3).first == 3 && kvf2.last(3).second == 1);
+  assert(kvf2.back().first == 4 && kvf2.back().second == 1);
+
+  // We called std::move on kvf1 so the object is no longer valid, thus
+  // any of these function calls should fail
+  std::cout << "Finishing kwasowTests5..." << std::endl;
+  std::cout << "The program should segfault now..." << std::endl;
+  kvf1.empty();
+  kvf1.size();
+  kvf1.clear();
+  kvf1.pop();
+  kvf1.pop(2);
+  kvf1.front();
+  kvf1.back();
+  kvf1.first(3);
+  kvf1.last(3);
+  kvf1.k_begin();
+  kvf1.k_end();
 }
 
 } // namespace kwasow
