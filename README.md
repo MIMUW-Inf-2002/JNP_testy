@@ -6,6 +6,23 @@ To repozytorium zawiera studenckie testy do zadań z JNP1 w roku akademickim 202
 
 Format i sposób uruchomienia testów zależy od specyfiki zadania.
 
+#### 05_kvfifo
+
+To run Kwasow tests include the header in your `kvfifo_example.cc` file and invoke
+the function at the end like this:
+
+```cpp
+…
+#include "kwasow.h"
+…
+
+int main() {
+  …
+
+  kwasow::kwasowMain();
+}
+```
+
 #### 03_moneybag
 
 Tak samo jak `02_hash`.
