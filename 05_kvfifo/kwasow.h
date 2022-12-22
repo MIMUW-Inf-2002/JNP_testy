@@ -26,7 +26,7 @@ void kwasowMain() {
   std::cout << "Passed kwasowTests3" << std::endl;
   kwasowTests4();
   std::cout << "Passed kwasowTests4" << std::endl;
-	kwasowTests5();
+  kwasowTests5();
 }
 
 // Basic operations
@@ -592,21 +592,112 @@ void kwasowTests5() {
   assert(kvf2.last(3).first == 3 && kvf2.last(3).second == 1);
   assert(kvf2.back().first == 4 && kvf2.back().second == 1);
 
-  // We called std::move on kvf1 so the object is no longer valid, thus
-  // any of these function calls should fail
-  std::cout << "Finishing kwasowTests5..." << std::endl;
-  std::cout << "The program should segfault now..." << std::endl;
-  kvf1.empty();
-  kvf1.size();
-  kvf1.clear();
-  kvf1.pop();
-  kvf1.pop(2);
-  kvf1.front();
-  kvf1.back();
-  kvf1.first(3);
-  kvf1.last(3);
-  kvf1.k_begin();
-  kvf1.k_end();
+  // We called std::move on kvf1 all the contents of kvf1 should be moved into
+  // kvf2, leaving kvf1 empty
+  assert(kvf1.empty());
+  assert(kvf1.size() == 0);
+
+  bool exception1 = false;
+  try {
+    kvf1.pop();
+  } catch (std::invalid_argument&) {
+    exception1 = true;
+  }
+  assert(exception1);
+
+  bool exception2 = false;
+  try {
+    kvf1.pop(1);
+  } catch (std::invalid_argument&) {
+    exception2 = true;
+  }
+  assert(exception2);
+
+  bool exception3 = false;
+  try {
+    kvf1.move_to_back(1);
+  } catch (std::invalid_argument&) {
+    exception3 = true;
+  }
+  assert(exception3);
+
+  bool exception4 = false;
+  try {
+    kvf1.front();
+  } catch (std::invalid_argument&) {
+    exception4 = true;
+  }
+  assert(exception4);
+
+  bool exception5 = false;
+  try {
+    kvf1.back();
+  } catch (std::invalid_argument&) {
+    exception5 = true;
+  }
+  assert(exception5);
+
+  bool exception6 = false;
+  try {
+    kvf1.first(1);
+  } catch (std::invalid_argument&) {
+    exception6 = true;
+  }
+  assert(exception6);
+
+  bool exception7 = false;
+  try {
+    kvf1.last(1);
+  } catch (std::invalid_argument&) {
+    exception7 = true;
+  }
+  assert(exception7);
+
+  kvfifo<int, int> const &kvfConst = kvf1;
+
+  bool exception8 = false;
+  try {
+    kvfConst.front();
+  } catch (std::invalid_argument&) {
+    exception8 = true;
+  }
+  assert(exception8);
+
+  bool exception9 = false;
+  try {
+    kvfConst.back();
+  } catch (std::invalid_argument&) {
+    exception9 = true;
+  }
+  assert(exception9);
+
+  bool exception10 = false;
+  try {
+    kvfConst.first(1);
+  } catch (std::invalid_argument&) {
+    exception10 = true;
+  }
+  assert(exception10);
+
+  bool exception11 = false;
+  try {
+    kvfConst.last(1);
+  } catch (std::invalid_argument&) {
+    exception11 = true;
+  }
+  assert(exception11);
+
+  try {
+    kvf1.k_begin();
+  } catch (...) {
+    assert(false);
+  }
+
+  try {
+    kvf1.k_end();
+  } catch (...) {
+    assert(false);
+  }
 }
 
 } // namespace kwasow
