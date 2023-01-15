@@ -6,6 +6,10 @@ To repozytorium zawiera studenckie testy do zadań z JNP1 w roku akademickim 202
 
 Format i sposób uruchomienia testów zależy od specyfiki zadania.
 
+#### 06_worldcup
+
+Umieść plik worldcup2022.h w folderze z testami i uruchom skrypt test.sh.
+
 #### 05_kvfifo
 
 To run Kwasow tests include the header in your `kvfifo_example.cc` file and invoke
