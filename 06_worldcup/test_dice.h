@@ -7,6 +7,7 @@
 #define TEST_DICE_H
 
 #include "worldcup.h"
+#include <climits>
 
 class SnakeEyeDie : public Die {
     [[nodiscard]] unsigned short roll() const override {
@@ -108,6 +109,12 @@ class YouProbablyShouldBeginToWorryAboutHowSpecificTheseDiceAreDie : public Die 
             (*rollNum) %= 10;
             return out;
         }
+};
+
+class OverflowDie : public Die {
+    [[nodiscard]] unsigned short roll() const override {
+        return USHRT_MAX;
+    }
 };
 
 #endif

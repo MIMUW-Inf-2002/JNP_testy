@@ -18,5 +18,6 @@ int main() {
     resultTestThree();
     fractionsTest();
     bankruptTest();
+    diceOverflowTest();
     std::cout << CYAN << "All tests passed succesfully\n" << RESET;
 }

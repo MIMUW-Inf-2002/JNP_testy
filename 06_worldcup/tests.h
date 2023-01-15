@@ -337,5 +337,27 @@ void bankruptTest() {
     std::cout << GREEN << "Bankrupt test ended\n" << RESET;
 }
 
+void diceOverflowTest() {
+    std::cout << RESET << "Dice overflow test running\n" << RESET;
+
+    std::shared_ptr<Die> oneDie = std::make_shared<SnakeEyeDie>();
+    std::shared_ptr<Die> overflowDie = std::make_shared<OverflowDie>();
+
+    std::shared_ptr<TextScoreBoard> scoreboard = std::make_shared<TextScoreBoard>();
+    std::shared_ptr<WorldCup> worldCup2022 = std::make_shared<WorldCup2022>();
+
+    worldCup2022->addDie(oneDie);
+    worldCup2022->addDie(overflowDie);
+    worldCup2022->addPlayer("Rico");
+    worldCup2022->addPlayer("Kowalski");
+    worldCup2022->setScoreBoard(scoreboard);
+
+    worldCup2022->play(1);
+
+    assert (scoreboard->str() == "=== Runda: 0\nRico [*** bankrut ***] [0] - Żółta kartka\n=== Zwycięzca: Kowalski\n");
+
+    std::cout << GREEN << "Dice overflow test ended\n" << RESET;
+}
+
 
 #endif
