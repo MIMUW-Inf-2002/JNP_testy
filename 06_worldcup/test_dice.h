@@ -3,7 +3,7 @@
 // Description: Testy dla WorldCup2022
 // License: Do What The Fuck You Want To Public License (WTFPL)
 
-#ifndef TWST_DICE_H
+#ifndef TEST_DICE_H
 #define TEST_DICE_H
 
 #include "worldcup.h"
@@ -91,6 +91,23 @@ class ZeroDie : public Die {
     [[nodiscard]] unsigned short roll() const override {
         return 0;
     }
+};
+
+class YouProbablyShouldBeginToWorryAboutHowSpecificTheseDiceAreDie : public Die {
+    private:
+        static constexpr unsigned short rolls[10] = {1, 0, 5, 0, 1, 0, 1, 0, 3, 30};
+        std::shared_ptr<unsigned long> rollNum;
+    public :
+        YouProbablyShouldBeginToWorryAboutHowSpecificTheseDiceAreDie () : Die() {
+            rollNum = std::make_shared<unsigned long>(0);
+        }
+
+        [[nodiscard]] unsigned short roll() const override {
+            unsigned short out = rolls[*rollNum];
+            (*rollNum)++;
+            (*rollNum) %= 10;
+            return out;
+        }
 };
 
 #endif

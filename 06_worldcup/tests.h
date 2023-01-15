@@ -289,5 +289,40 @@ void fractionsTest() {
     std::cout << GREEN << "Fractions test passed\n\n" << RESET;
 }
 
+// Jeśli mamy dokładnie 0 pieniędzy, to wciąż *technically*
+// nie zbankrutowaliśmy i możemy grać dalej.
+void bankruptTest() {
+    std::cout << RESET << "Bankrupt test running\n" << RESET;
+
+    std::shared_ptr<Die> die1 = std::make_shared<ZeroDie>();
+    std::shared_ptr<Die> die2 = std::make_shared<YouProbablyShouldBeginToWorryAboutHowSpecificTheseDiceAreDie>();
+
+    std::shared_ptr<TextScoreBoard> scoreboard = std::make_shared<TextScoreBoard>();
+
+    std::shared_ptr<WorldCup> worldCup2022 = std::make_shared<WorldCup2022>();
+    worldCup2022->addDie(die1);
+    worldCup2022->addDie(die2);
+    worldCup2022->addPlayer("Bitek");
+    worldCup2022->addPlayer("Bajtek");
+    worldCup2022->setScoreBoard(scoreboard);
+
+    worldCup2022->play(5);
+
+    std::regex RoundOne("^(.*\n)*=== Runda: 0\nBitek \\[w grze\\] \\[1000\\] - Mecz z San Marino\nBajtek \\[w grze\\] \\[1050\\] - Początek sezonu\n(.*\n)*$");
+    std::regex RoundTwo("^(.*\n)*=== Runda: 1\nBitek \\[w grze\\] \\[480\\] - Mecz z Arabią Saudyjską\nBajtek \\[w grze\\] \\[1100\\] - Początek sezonu\n(.*\n)*$");
+    std::regex RoundThree("^(.*\n)*=== Runda: 2\nBitek \\[w grze\\] \\[580\\] - Bukmacher\nBajtek \\[w grze\\] \\[1150\\] - Początek sezonu\n(.*\n)*$");
+    std::regex RoundFour("^(.*\n)*=== Runda: 3\nBitek \\[w grze\\] \\[580\\] - Mecz z Argentyną\nBajtek \\[w grze\\] \\[1200\\] - Początek sezonu\n(.*\n)*$");
+    std::regex RoundFive("^(.*\n)*=== Runda: 4\nBitek \\[w grze\\] \\[0\\] - Rzut karny\nBajtek \\[\\*\\*\\* bankrut \\*\\*\\*\\] \\[0\\] - Mecz z Arabią Saudyjską\n(.*\n)*$");
+
+    std::cerr << RED;
+    assert (std::regex_match(scoreboard->str(), RoundOne));
+    assert (std::regex_match(scoreboard->str(), RoundTwo));
+    assert (std::regex_match(scoreboard->str(), RoundThree));
+    assert (std::regex_match(scoreboard->str(), RoundFour));
+    assert (std::regex_match(scoreboard->str(), RoundFive));
+
+    std::cout << GREEN << "Bankrupt test ended\n" << RESET;
+}
+
 
 #endif

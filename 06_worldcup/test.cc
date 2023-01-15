@@ -17,5 +17,6 @@ int main() {
     resultTestTwo();
     resultTestThree();
     fractionsTest();
+    bankruptTest();
     std::cout << CYAN << "All tests passed succesfully\n" << RESET;
 }
