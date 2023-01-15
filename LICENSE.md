@@ -1,6 +1,6 @@
 MIMUW Tests License
 
-Copyright (c) 2021 MIMUW-IPP-2021
+Copyright (c) 2021-2023 MIMUW-JNP1
 
 Any employee of MIMUW is *not* permitted to use, copy, modify and distribute
 the testcases from this project.
