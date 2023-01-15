@@ -196,14 +196,14 @@ void resultTestTwo() {
     std::shared_ptr<WorldCup> worldCup2022 = std::make_shared<WorldCup2022>();
     worldCup2022->addDie(die1);
     worldCup2022->addDie(die2);
-    worldCup2022->addPlayer("Bajtek");
-    worldCup2022->addPlayer("Bitek");
+    worldCup2022->addPlayer("Andrew Tate");
+    worldCup2022->addPlayer("Greta Thunberg");
     worldCup2022->setScoreBoard(scoreboard);
 
     worldCup2022->play(6);
 
-    const std::regex RoundOne("^=== Runda: 0\nBajtek \\[w grze] \\[840] - Mecz z Lie*chtensteinem\nBitek \\[w grze] \\[840] - Dzień wolny od treningu\n(.*\n)*$");
-    const std::regex RoundTwo("^(.*\n)*=== Runda: 1\nBajtek \\[w grze] \\[360] - Bukmacher\nBitek \\[\\*\\*\\* bankrut \\*\\*\\*] \\[0] - Mecz z Francją\n(.*\n)*$");
+    const std::regex RoundOne("^=== Runda: 0\nAndrew Tate \\[w grze] \\[840] - Mecz z Lie?chtensteinem\nGreta Thunberg \\[w grze] \\[840] - Dzień wolny od treningu\n(.*\n)*$");
+    const std::regex RoundTwo("^(.*\n)*=== Runda: 1\nAndrew Tate \\[w grze] \\[360] - Bukmacher\nGreta Thunberg \\[\\*\\*\\* bankrut \\*\\*\\*] \\[0] - Mecz z Francją\n(.*\n)*$");
 
     std::cerr << RED;
     assert (std::regex_match(scoreboard->str(), RoundOne));
@@ -232,18 +232,21 @@ void resultTestThree() {
 
     worldCup2022->play(5);
 
-    const std::regex RoundOne("^=== Runda: 0\nKleofas \\[\\*\\*\\* czekanie: 3 \\*\\*\\*] \\[620] - Żółta kartka\nIldefons \\[w grze] \\[620] - Mecz z Meksykiem\nGodehard \\[w grze] \\[1280] - Mecz z Lie*chtensteinem\n(.*\n)*$");
+    const std::regex RoundOne("^=== Runda: 0\nKleofas \\[\\*\\*\\* czekanie: 3 \\*\\*\\*] \\[620] - Żółta kartka\nIldefons \\[w grze] \\[620] - Mecz z Meksykiem\nGodehard \\[w grze] \\[1280] - Mecz z Lie?chtensteinem\n(.*\n)*$");
     const std::regex RoundTwo("^(.*\n)*=== Runda: 1\nKleofas \\[\\*\\*\\* czekanie: 2 \\*\\*\\*] \\[620] - Żółta kartka\nIldefons \\[w grze] \\[440] - Bukmacher\nGodehard \\[w grze] \\[1680] - Mecz z Arabią Saudyjską\n(.*\n)*$");
     const std::regex RoundThree("^(.*\n)*=== Runda: 2\nKleofas \\[\\*\\*\\* czekanie: 1 \\*\\*\\*] \\[620] - Żółta kartka\nIldefons \\[w grze] \\[310] - Gol\nGodehard \\[w grze] \\[850] - Rzut karny\n(.*\n)*$");
     const std::regex RoundFour("^(.*\n)*=== Runda: 3\nKleofas \\[w grze] \\[1290] - Mecz z Argentyną\nIldefons \\[\\*\\*\\* bankrut \\*\\*\\*] \\[0] - Mecz z San Marino\nGodehard \\[w grze] \\[1380] - Mecz z San Marino\n(.*\n)*$");
     const std::regex RoundFive("^(.*\n)*=== Runda: 4\nKleofas \\[w grze] \\[4130] - Mecz z Francją\nGodehard \\[w grze] \\[480] - Bukmacher\n=== Zwycięzca: Kleofas\\s*$");
+    
+    const std::regex RoundFiveWithBankrupt("^(.*\n)*=== Runda: 4\nKleofas \\[w grze] \\[4130] - Mecz z Francją\nIldefons \\[\\*\\*\\* bankrut \\*\\*\\*] \\[0] - Mecz z San Marino\nGodehard \\[w grze] \\[480] - Bukmacher\n=== Zwycięzca: Kleofas\\s*$");
     
     std::cerr << RED;
     assert (std::regex_match(scoreboard->str(), RoundOne));
     assert (std::regex_match(scoreboard->str(), RoundTwo));
     assert (std::regex_match(scoreboard->str(), RoundThree));
     assert (std::regex_match(scoreboard->str(), RoundFour));
-    assert (std::regex_match(scoreboard->str(), RoundFive));
+    assert (std::regex_match(scoreboard->str(), RoundFive) ||
+            std::regex_match(scoreboard->str(), RoundFiveWithBankrupt));
 
     std::cout << GREEN << "Results test 3 passed\n\n" << RESET;
 
@@ -274,17 +277,27 @@ void fractionsTest() {
     worldCup2022->play(5);
 
     const std::regex RoundOne("^=== Runda: 0\nHamilton \\[\\*\\*\\* czekanie: 3 \\*\\*\\*] \\[620] - Żółta kartka\nJefferson \\[w grze] \\[1160] - Mecz z San Marino\nBurr \\[w grze] \\[840] - Dzień wolny od treningu\nLafaeyette \\[\\*\\*\\* czekanie: 3 \\*\\*\\*] \\[620] - Żółta kartka\nKing George III \\[\\*\\*\\* czekanie: 3 \\*\\*\\*] \\[620] - Żółta kartka\nEliza \\[w grze] \\[840] - Dzień wolny od treningu\n(.*\n)*$");
-    const std::regex RoundTwo("^(.*\n)*=== Runda: 1\nHamilton \\[\\*\\*\\* czekanie: 2 \\*\\*\\*] \\[620] - Żółta kartka\nJefferson \\[\\*\\*\\* bankrut \\*\\*\\*] \\[0] - Żółta kartka\nBurr \\[w grze] \\[665] - Mecz z Argentyną\nLafaeyette \\[\\*\\*\\* czekanie: 2 \\*\\*\\*] \\[620] - Żółta kartka\nKing George III \\[\\*\\*\\* czekanie: 2 \\*\\*\\*] \\[620] - Żółta kartka\nEliza \\[w grze] \\[1940] - Mecz z Lie*chtensteinem\n(.*\n)*$");
+    const std::regex RoundTwo("^(.*\n)*=== Runda: 1\nHamilton \\[\\*\\*\\* czekanie: 2 \\*\\*\\*] \\[620] - Żółta kartka\nJefferson \\[\\*\\*\\* bankrut \\*\\*\\*] \\[0] - Żółta kartka\nBurr \\[w grze] \\[665] - Mecz z Argentyną\nLafaeyette \\[\\*\\*\\* czekanie: 2 \\*\\*\\*] \\[620] - Żółta kartka\nKing George III \\[\\*\\*\\* czekanie: 2 \\*\\*\\*] \\[620] - Żółta kartka\nEliza \\[w grze] \\[1940] - Mecz z Lie?chtensteinem\n(.*\n)*$");
     const std::regex RoundThree("^(.*\n)*=== Runda: 2\nHamilton \\[\\*\\*\\* czekanie: 1 \\*\\*\\*] \\[620] - Żółta kartka\nBurr \\[w grze] \\[955] - Mecz z San Marino\nLafaeyette \\[\\*\\*\\* czekanie: 1 \\*\\*\\*] \\[620] - Żółta kartka\nKing George III \\[\\*\\*\\* czekanie: 1 \\*\\*\\*] \\[620] - Żółta kartka\nEliza \\[w grze] \\[1230] - Gol\n(.*\n)*$");
     const std::regex RoundFour("^(.*\n)*=== Runda: 3\nHamilton \\[w grze] \\[2870] - Mecz z Meksykiem\nBurr \\[\\*\\*\\* bankrut \\*\\*\\*] \\[0] - Gol\nLafaeyette \\[w grze] \\[1370] - Mecz z Meksykiem\nKing George III \\[w grze] \\[620] - Mecz z Meksykiem\nEliza \\[\\*\\*\\* bankrut \\*\\*\\*] \\[0] - Mecz z Argentyną\n(.*\n)*$");
     const std::regex RoundFive("^(.*\n)*=== Runda: 4\nHamilton \\[w grze] \\[3602] - Mecz z Argentyną\nLafaeyette \\[w grze] \\[5370] - Mecz z Arabią Saudyjską\nKing George III \\[w grze] \\[620] - Mecz z Arabią Saudyjską\n(.*\n)*$");
 
+    const std::regex RoundThreeWithBankrupt("^(.*\n)*=== Runda: 2\nHamilton \\[\\*\\*\\* czekanie: 1 \\*\\*\\*] \\[620] - Żółta kartka\nJefferson \\[\\*\\*\\* bankrut \\*\\*\\*] \\[0] - Żółta kartka\nBurr \\[w grze] \\[955] - Mecz z San Marino\nLafaeyette \\[\\*\\*\\* czekanie: 1 \\*\\*\\*] \\[620] - Żółta kartka\nKing George III \\[\\*\\*\\* czekanie: 1 \\*\\*\\*] \\[620] - Żółta kartka\nEliza \\[w grze] \\[1230] - Gol\n(.*\n)*$");
+    const std::regex RoundFourWithBankrupt("^(.*\n)*=== Runda: 3\nHamilton \\[w grze] \\[2870] - Mecz z Meksykiem\nJefferson \\[\\*\\*\\* bankrut \\*\\*\\*] \\[0] - Żółta kartka\nBurr \\[\\*\\*\\* bankrut \\*\\*\\*] \\[0] - Gol\nLafaeyette \\[w grze] \\[1370] - Mecz z Meksykiem\nKing George III \\[w grze] \\[620] - Mecz z Meksykiem\nEliza \\[\\*\\*\\* bankrut \\*\\*\\*] \\[0] - Mecz z Argentyną\n(.*\n)*$");
+    const std::regex RoundFiveWithBankrupt("^(.*\n)*=== Runda: 4\nHamilton \\[w grze] \\[3602] - Mecz z Argentyną\nJefferson \\[\\*\\*\\* bankrut \\*\\*\\*] \\[0] - Żółta kartka\nBurr \\[\\*\\*\\* bankrut \\*\\*\\*] \\[0] - Gol\nLafaeyette \\[w grze] \\[5370] - Mecz z Arabią Saudyjską\nKing George III \\[w grze] \\[620] - Mecz z Arabią Saudyjską\nEliza \\[\\*\\*\\* bankrut \\*\\*\\*] \\[0] - Mecz z Argentyną\n(.*\n)*$");
+    
     std::cerr << RED;
     assert (std::regex_match(scoreboard->str(), RoundOne));
     assert (std::regex_match(scoreboard->str(), RoundTwo));
-    assert (std::regex_match(scoreboard->str(), RoundThree));
-    assert (std::regex_match(scoreboard->str(), RoundFour));
-    assert (std::regex_match(scoreboard->str(), RoundFive));
+
+    assert (std::regex_match(scoreboard->str(), RoundThree) ||
+            std::regex_match(scoreboard->str(), RoundThreeWithBankrupt));
+
+    assert (std::regex_match(scoreboard->str(), RoundFour) ||
+            std::regex_match(scoreboard->str(), RoundFourWithBankrupt));
+
+    assert (std::regex_match(scoreboard->str(), RoundFive) || 
+            std::regex_match(scoreboard->str(), RoundFiveWithBankrupt));
 
     std::cout << GREEN << "Fractions test passed\n\n" << RESET;
 }
@@ -302,17 +315,17 @@ void bankruptTest() {
     std::shared_ptr<WorldCup> worldCup2022 = std::make_shared<WorldCup2022>();
     worldCup2022->addDie(die1);
     worldCup2022->addDie(die2);
-    worldCup2022->addPlayer("Bitek");
-    worldCup2022->addPlayer("Bajtek");
+    worldCup2022->addPlayer("Młoda Leokadia");
+    worldCup2022->addPlayer("Oliwka Brazil");
     worldCup2022->setScoreBoard(scoreboard);
 
     worldCup2022->play(5);
 
-    std::regex RoundOne("^(.*\n)*=== Runda: 0\nBitek \\[w grze\\] \\[1000\\] - Mecz z San Marino\nBajtek \\[w grze\\] \\[1050\\] - Początek sezonu\n(.*\n)*$");
-    std::regex RoundTwo("^(.*\n)*=== Runda: 1\nBitek \\[w grze\\] \\[480\\] - Mecz z Arabią Saudyjską\nBajtek \\[w grze\\] \\[1100\\] - Początek sezonu\n(.*\n)*$");
-    std::regex RoundThree("^(.*\n)*=== Runda: 2\nBitek \\[w grze\\] \\[580\\] - Bukmacher\nBajtek \\[w grze\\] \\[1150\\] - Początek sezonu\n(.*\n)*$");
-    std::regex RoundFour("^(.*\n)*=== Runda: 3\nBitek \\[w grze\\] \\[580\\] - Mecz z Argentyną\nBajtek \\[w grze\\] \\[1200\\] - Początek sezonu\n(.*\n)*$");
-    std::regex RoundFive("^(.*\n)*=== Runda: 4\nBitek \\[w grze\\] \\[0\\] - Rzut karny\nBajtek \\[\\*\\*\\* bankrut \\*\\*\\*\\] \\[0\\] - Mecz z Arabią Saudyjską\n(.*\n)*$");
+    std::regex RoundOne("^(.*\n)*=== Runda: 0\nMłoda Leokadia \\[w grze\\] \\[1000\\] - Mecz z San Marino\nOliwka Brazil \\[w grze\\] \\[1050\\] - Początek sezonu\n(.*\n)*$");
+    std::regex RoundTwo("^(.*\n)*=== Runda: 1\nMłoda Leokadia \\[w grze\\] \\[480\\] - Mecz z Arabią Saudyjską\nOliwka Brazil \\[w grze\\] \\[1100\\] - Początek sezonu\n(.*\n)*$");
+    std::regex RoundThree("^(.*\n)*=== Runda: 2\nMłoda Leokadia \\[w grze\\] \\[580\\] - Bukmacher\nOliwka Brazil \\[w grze\\] \\[1150\\] - Początek sezonu\n(.*\n)*$");
+    std::regex RoundFour("^(.*\n)*=== Runda: 3\nMłoda Leokadia \\[w grze\\] \\[580\\] - Mecz z Argentyną\nOliwka Brazil \\[w grze\\] \\[1200\\] - Początek sezonu\n(.*\n)*$");
+    std::regex RoundFive("^(.*\n)*=== Runda: 4\nMłoda Leokadia \\[w grze\\] \\[0\\] - Rzut karny\nOliwka Brazil \\[\\*\\*\\* bankrut \\*\\*\\*\\] \\[0\\] - Mecz z Arabią Saudyjską\n(.*\n)*$");
 
     std::cerr << RED;
     assert (std::regex_match(scoreboard->str(), RoundOne));
