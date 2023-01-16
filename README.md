@@ -6,6 +6,10 @@ To repozytorium zawiera studenckie testy do zadań z JNP1 w roku akademickim 202
 
 Format i sposób uruchomienia testów zależy od specyfiki zadania.
 
+#### 07_images
+
+Umieść pliki images.h i functional.h (opcjonalnie też .cc) w folderze z testami i uruchom skrypt image_test.sh
+
 #### 06_worldcup
 
 Umieść plik worldcup2022.h w folderze z testami i uruchom skrypt test.sh.
