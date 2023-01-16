@@ -20,21 +20,23 @@ make
 
 echo "Running official tests"
 
-code = ./example
+./example
+rcode=$?
 
-if ! code
+if [ ! $rcode ]
 then
-    echo "Official tests returned with exit code $code"
+    echo "Official tests returned with exit code $rcode"
     exit 1
 fi
 
 echo "Running student tests"
 
-code= ./image_test
+./image_test
+rcode=$?
 
-if ! $code
+if [ ! $rcode ]
 then
-    echo "Error: ./image_test returned with exit code $code"
+    echo "Error: ./image_test returned with exit code $rcode"
     exit 1
 fi
 
@@ -49,11 +51,12 @@ failed=0
 for f in *.bmp
 do
     echo "Checking $f..."
-    code= ./diff_bmp $f ../original-images/$f ../diffs/$f
-    if $code == 0
+    ./diff_bmp $f ../original-images/$f ../diffs/$f
+    rcode=$?
+    if [[ $rcode = 0 ]]
     then
         ((passed=$passed+1))
-    elif $code == 1
+    elif [[ $rcode = 1 ]]
     then
         ((failed=$failed+1))
     else

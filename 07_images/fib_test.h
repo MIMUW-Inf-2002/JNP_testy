@@ -9,7 +9,7 @@
 
 
 namespace Fibonacci {
-    constinit Color simple_colors[16] = {
+    Color simple_colors[16] = {
             {0,0,0},
             {0x80,0,0},
             {0,0x80,0},
@@ -28,7 +28,7 @@ namespace Fibonacci {
             {0xff,0xff,0xff}
     };
 
-    constinit Image gradient = [](auto q){
+    Image gradient = [](auto q){
         const Point p = q.is_polar ? from_polar(q) : q;
         const double v = exp(-0.01 * distance(p, {0,-100,false}));
         auto c = static_cast<unsigned char>(255.0 * v);
@@ -68,22 +68,22 @@ namespace Fibonacci {
                                     l > epsilon2 ? gradient(p) : (
                                             l > -1*epsilon2 ? border : (
                                                     bd > -1*epsilon ? border : simple_colors[i]
-                                                    )
                                             )
                                     )
                             )
-                    );
+                    )
+            );
         };
     }
 
-    constinit Region amongus_sil = [](auto q) {
-            const Point p = q.is_polar ? from_polar(q) : q;
-            const double epsilon = 4500.0;
-            const double epsilon2 = 2;
-            const double vd = visor_dist(p);
-            const double bd = body_dist(p);
-            const double l = legs(p);
-            return vd < -1.0 * epsilon || vd < epsilon || (bd <= epsilon && l <= epsilon2);
+    Region amongus_sil = [](auto q) {
+        const Point p = q.is_polar ? from_polar(q) : q;
+        const double epsilon = 4500.0;
+        const double epsilon2 = 2;
+        const double vd = visor_dist(p);
+        const double bd = body_dist(p);
+        const double l = legs(p);
+        return vd < -1.0 * epsilon || vd < epsilon || (bd <= epsilon && l <= epsilon2);
     };
 
     Vector shift(int i) {
@@ -135,7 +135,7 @@ namespace Fibonacci {
                         lighten(darken(
                                 lerp(checker(7.3, 0.2, 0.8),
                                      scale(rotate(translate(amongus(12), {10, 10}), 7.0), 3)
-                                     , rings({40, 1.73, true}, 22.222, simple_colors[1], simple_colors[14])),
+                                        , rings({40, 1.73, true}, 22.222, simple_colors[1], simple_colors[14])),
                                 vertical_stripe(30, 0.4, 0.1)), circle({70, 5.0, true}, 40, 0.7, 0.1))));
     }
 }
