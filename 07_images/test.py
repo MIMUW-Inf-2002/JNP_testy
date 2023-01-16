@@ -18,9 +18,9 @@ def print_diff(img, correct_img):
     for i in range(correct_img.shape[0]):
         for j in range(correct_img.shape[1]):
             if not np.all(img[i][j] == correct_img[i][j]):
-                logs += "Difference at " + str(i) + ", " + str(j)
-                logs += "Correct: " + str(correct_img[i, j])
-                logs += "Test: " + str(img[i, j])
+                logs += "Difference at " + str(i) + ", " + str(j) + "\n"
+                logs += "Correct: " + str(correct_img[i, j]) + "\n"
+                logs += "Test: " + str(img[i, j]) + "\n"
 
     return logs
 
@@ -40,7 +40,7 @@ def test_image(test_name, verbose):
 
     assert is_correct
 
-
+open('logs.txt', 'w').close() 
 verbose = False
 
 if len(sys.argv) > 1:
@@ -49,11 +49,11 @@ if len(sys.argv) > 1:
 for file in os.listdir(CORRECT_DIR):
     if file.endswith((".bmp")):
         print("Running test " + file)
-        LOG_FILE.write("Running test " + file)
+        LOG_FILE.write("Running test " + file + "\n")
 
         test_image(file, verbose)
         print(OKGREEN + "Test passed\033[0m \n" + RESET)
-        LOG_FILE.write("Test passed \n")
+        LOG_FILE.write("Test passed \n\n")
 
 LOG_FILE.close()
 print(OKCYAN + BOLD + "All tests passed\033[0m" + RESET)
