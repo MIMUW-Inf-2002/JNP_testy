@@ -6,6 +6,20 @@ To repozytorium zawiera studenckie testy do zadań z JNP1 w roku akademickim 202
 
 Format i sposób uruchomienia testów zależy od specyfiki zadania.
 
+#### 07_images
+
+
+Do poprawnego działania potrzebna jest instalacja poniższych bibliotek:
+```
+pip3 install numpy
+pip3 install pillow
+```
+
+Następnie należy podmienić plik example.cc w folderze z kodem źródłowym i wywołać
+```
+./test.sh <ścieżka do folderu z plikami źródłowymi> [-v]
+```
+
 #### 06_worldcup
 
 Umieść plik worldcup2022.h w folderze z testami i uruchom skrypt test.sh.
