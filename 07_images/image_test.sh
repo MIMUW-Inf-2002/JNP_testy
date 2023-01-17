@@ -1,7 +1,5 @@
 #! /bin/bash
 
-cd src || exit 1
-
 if [ ! -e "functional.cc" ]
 then
     touch functional.cc
@@ -12,8 +10,6 @@ then
     touch images.cc
 fi
 
-cd ..
-
 if [ ! -d "./build-tests/" ]
 then
     mkdir build-tests
@@ -23,7 +19,7 @@ cd build-tests
 
 rm *.bmp
 
-cmake ../src
+cmake ..
 make
 
 echo "Running official tests"

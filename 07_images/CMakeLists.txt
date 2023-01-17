@@ -4,19 +4,19 @@ project(JNP_Testy_07_images)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_FLAGS "-Wall -Wextra -pedantic -O2")
 
-include_directories(..)
+include_directories(.)
 
 add_library(coordinate
-        coordinate.h
-        coordinate.cc)
+        src/coordinate.h
+        src/coordinate.cc)
 
 add_library(color
-        color.h
-        color.cc)
+        src/color.h
+        src/color.cc)
 
 add_library(bmp
-        bmp.h
-        bmp.cc)
+        src/bmp.h
+        src/bmp.cc)
 
 add_library(functional
         functional.h
@@ -27,14 +27,14 @@ add_library(images
         images.cc)
 
 add_executable(example
-        example.cc)
+        src/example.cc)
 
 add_executable(diff_bmp
-        diff_bmp.cc)
+        src/diff_bmp.cc)
 
 add_executable(image_test
-        fib_test.h
-        test.cc)
+        src/fib_test.h
+        src/test.cc)
 
 target_link_libraries(example coordinate)
 target_link_libraries(example color)
