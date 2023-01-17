@@ -1,5 +1,5 @@
-#include "functional.h"
-#include "images.h"
+#include "../functional.h"
+#include "../images.h"
 #include "bmp.h"
 #include "color.h"
 #include "coordinate.h"
