@@ -1,4 +1,6 @@
-# ! bin/bash
+#! /bin/bash
+
+cd src || exit 1
 
 if [ ! -e "functional.cc" ]
 then
@@ -10,12 +12,18 @@ then
     touch images.cc
 fi
 
+cd ..
+
 if [ ! -d "./build-tests/" ]
 then
     mkdir build-tests
 fi
+
 cd build-tests
-cmake ..
+
+rm *.bmp
+
+cmake ../src
 make
 
 echo "Running official tests"
