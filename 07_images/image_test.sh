@@ -1,4 +1,4 @@
-# ! bin/bash
+#! /bin/bash
 
 if [ ! -e "functional.cc" ]
 then
@@ -14,8 +14,12 @@ if [ ! -d "./build-tests/" ]
 then
     mkdir build-tests
 fi
+
 cd build-tests
-cmake ..
+
+rm *.bmp
+
+cmake ../src
 make
 
 echo "Running official tests"
