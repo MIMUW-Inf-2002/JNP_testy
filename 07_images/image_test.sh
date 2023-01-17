@@ -1,5 +1,7 @@
 #! /bin/bash
 
+cd src || exit 1
+
 if [ ! -e "functional.cc" ]
 then
     touch functional.cc
@@ -9,6 +11,8 @@ if [ ! -e "images.cc" ]
 then
     touch images.cc
 fi
+
+cd ..
 
 if [ ! -d "./build-tests/" ]
 then
