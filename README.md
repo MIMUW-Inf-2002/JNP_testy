@@ -9,16 +9,8 @@ Format i sposób uruchomienia testów zależy od specyfiki zadania.
 #### 07_images
 
 
-Do poprawnego działania potrzebna jest instalacja poniższych bibliotek:
-```
-pip3 install numpy
-pip3 install pillow
-```
+Umieść pliki images.h i functional.h (opcjonalnie też .cc) w folderze z testami i uruchom skrypt image_test.sh
 
-Następnie należy podmienić plik example.cc w folderze z kodem źródłowym i wywołać
-```
-./test.sh <ścieżka do folderu z plikami źródłowymi> [-v]
-```
 
 #### 06_worldcup
 

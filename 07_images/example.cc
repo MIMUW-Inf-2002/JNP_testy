@@ -5,8 +5,7 @@
 #include "coordinate.h"
 #include <cassert>
 #include <cstdint>
-#include <cmath>
-#include <iostream>
+
 
 int
 main()
@@ -17,55 +16,55 @@ main()
   const Image vs = vertical_stripe(100, Colors::Vermilion, Colors::blue);
   const Blend cb = constant<Fraction>(.42);
 
-  create_BMP("test_images/constant.bmp",
+  create_BMP("constant.bmp",
              width,
              height,
              constant(Colors::Vermilion));
-  create_BMP("test_images/rotate.bmp",
+  create_BMP("rotate.bmp",
              width,
              height,
              rotate(vs, M_PI / 4.));
-  create_BMP("test_images/translate.bmp",
+  create_BMP("translate.bmp",
              width,
              height,
              translate(vs, Vector(100., 0.)));
-  create_BMP("test_images/scale.bmp",
+  create_BMP("scale.bmp",
              width,
              height,
              scale(vs, 2.));
-  create_BMP("test_images/circle.bmp",
+  create_BMP("circle.bmp",
              width,
              height,
              circle(Point(50., 100.), 10., Colors::Vermilion, Colors::blue));
-  create_BMP("test_images/checker.bmp",
+  create_BMP("checker.bmp",
              width,
              height,
              checker(10., Colors::Vermilion, Colors::blue));
-  create_BMP("test_images/polar_checker.bmp",
+  create_BMP("polar_checker.bmp",
              width,
              height,
              polar_checker(10., 4, Colors::Vermilion, Colors::blue));
-  create_BMP("test_images/rings.bmp",
+  create_BMP("rings.bmp",
              width,
              height,
              rings(Point(50., 100.), 10., Colors::Vermilion, Colors::blue));
-  create_BMP("test_images/vertical_stripe.bmp",
+  create_BMP("vertical_stripe.bmp",
              width,
              height,
              vs);
-  create_BMP("test_images/cond.bmp",
+  create_BMP("cond.bmp",
              width,
              height,
              cond(rc, constant(Colors::Vermilion), constant(Colors::blue)));
-  create_BMP("test_images/lerp.bmp",
+  create_BMP("lerp.bmp",
              width,
              height,
              lerp(cb, constant(Colors::blue), constant(Colors::white)));
-  create_BMP("test_images/dark_vs.bmp",
+  create_BMP("dark_vs.bmp",
              width,
              height,
              darken(vs, cb));
-  create_BMP("test_images/light_vs.bmp",
+  create_BMP("light_vs.bmp",
              width,
              height,
              lighten(vs, cb));
