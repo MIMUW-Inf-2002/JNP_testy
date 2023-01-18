@@ -1,7 +1,7 @@
 #ifndef BMP_H
 #define BMP_H
 
-#include "images.h"
+#include "../images.h"
 #include <cstdint>
 #include <string>
 

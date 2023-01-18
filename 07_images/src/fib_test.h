@@ -1,8 +1,8 @@
 #ifndef FIB_TEST_H
 #define FIB_TEST_H
 
-#include "images.h"
-#include "functional.h"
+#include "../images.h"
+#include "../functional.h"
 #include "bmp.h"
 #include "color.h"
 #include "coordinate.h"
